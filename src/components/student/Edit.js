@@ -1,7 +1,7 @@
 import { Typography, Box, makeStyles, Grid, TextField, Button } from "@material-ui/core"
 import { deepPurple, green } from '@material-ui/core/colors';
 import { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 const useStyles = makeStyles({
  headingColor: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 const Edit = () => {
  const classes = useStyles();
  const { id } = useParams();
- const history = useHistory();
+ const navigate = useNavigate();
  const [student, setStudent] = useState({
   stuname: "",
   email: ""
@@ -47,13 +47,13 @@ const Edit = () => {
   e.preventDefault()
   try {
    await axios.put(`http://localhost:3333/students/${id}`, student)
-   history.push("/")
+   navigate('/', {replace:true})
   } catch (error) {
    console.log("Something is Wrong");
   }
  }
  function handleClick() {
-  history.push("/")
+  navigate('/', {replace:true})
  }
  return (
   <>

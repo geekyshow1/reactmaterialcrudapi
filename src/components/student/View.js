@@ -1,6 +1,6 @@
 import { Typography, Box, makeStyles, TableContainer, Table, TableBody, TableCell, TableHead, TableRow, Paper, Button } from "@material-ui/core"
 import { orange } from '@material-ui/core/colors';
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 const useStyles = makeStyles({
@@ -18,7 +18,7 @@ const View = () => {
  const classes = useStyles();
  const { id } = useParams();
  const [student, setStudent] = useState([]);
- const history = useHistory();
+ const navigate = useNavigate();
  useEffect(() => {
   async function getStudent() {
    try {
@@ -33,7 +33,7 @@ const View = () => {
  }, [id])
 
  function handleClick() {
-  history.push("/")
+  navigate('/', {replace:true})
  }
  return (
   <>
